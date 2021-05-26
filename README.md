@@ -47,17 +47,7 @@ SGuard monitors the vitals of its user via his or her phone and/or smartwatch. W
 Profile picture/Personalize yourself, your role (maybe the one submitted) and your slogan/credentials
 
 ## How it works
-<img src="./Readme/Architecture diagram/Architecture design V1.svg"/>
-
-Our SGuard Voicebot works through the following manner:
-
-1. Phone microphone records speech of SGuardian which is sent to our backend Node-RED server
-2. Node-RED server calls Watson Speech to Text Service to use machine learning to translate user speech
-3. Node-RED server receives transcript and passes it to Watson Assistant service.
-4. Watson Assistant, finetuned with SCDF guidelines on how to perform first aid, uses natural language understanding to formulate the best response to guide the SGuardian.
-5. Watson Assistant's response is sent to Watson Text to Speech.
-6. Watson Text to Speech encodes the message in the user's language.
-7. Node-RED server sends the verbal response back to the SGuard app.
+<img src="./Readme/Architecture diagram/Architecture design V3.svg"/>
 
 ## References
 <a id="reference-1">1.</a>
