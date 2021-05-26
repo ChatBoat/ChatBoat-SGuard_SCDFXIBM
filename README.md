@@ -58,3 +58,21 @@ Our SGuard Voicebot works through the following manner:
 5. Watson Assistant's response is sent to Watson Text to Speech.
 6. Watson Text to Speech encodes the message in the user's language.
 7. Node-RED server sends the verbal response back to the SGuard app.
+
+## References
+<a id="reference-1">1.</a>
+
+```bibtex
+@article{doi:10.1080/10903127.2020.1777233,
+    author = {Wei Ming Ng and Carl Ross De Souza and Pin Pin Pek and Nur Shahidah and Yih Yng Ng and Shalini Arulanandam and Alexander Elgin White and Benjamin Sieu-Hon Leong and Marcus Eng Hock Ong},
+    title = {myResponder Smartphone Application to Crowdsource Basic Life Support for Out-of-Hospital Cardiac Arrest: The Singapore Experience},
+    journal = {Prehospital Emergency Care},
+    volume = {25},
+    number = {3},
+    pages = {388-396},
+    year  = {2021},
+    publisher = {Taylor & Francis},
+    doi = {10.1080/10903127.2020.1777233}
+    URL = {https://doi.org/10.1080/10903127.2020.1777233}
+}
+```
