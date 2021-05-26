@@ -2,7 +2,7 @@
  * @format
  */
 
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled, {css} from '@emotion/native';
 
 import {
@@ -10,7 +10,6 @@ import {
   View,
   Text,
   useWindowDimensions,
-  ViewStyle,
 } from 'react-native';
 import {
   Area,
@@ -20,23 +19,15 @@ import {
   Line,
   VerticalAxis,
 } from 'react-native-responsive-linechart';
-
-const H1 = styled.Text`
-  font-size: 64px;
-`;
-const H2 = styled.Text`
-  font-size: 48px;
-`;
-const H3 = styled.Text`
-  font-size: 24px;
-`;
-const H4 = styled.Text`
-  font-size: 16px;
-`;
+import {
+  H2,
+  H3,
+} from './Misc';
+import { SensorProvider,useAccelerometer } from './Sensor';
 
 interface SensorGraphProps {
   name: string;
-  color: '#44bd32';
+  color: string;
   /** Hook to get array of points. x is in seconds, y determines on the sensor. */
   useSensor: () => ChartDataPoint[];
 }
@@ -56,24 +47,32 @@ function fakeHeartRateHook() {
 function SensorGraph({name, color, useSensor}: SensorGraphProps) {
   /*
    * x should be in seconds I guess, though sub-second values will probably be used.
-   * for now, update rate is hardcoded as 5 seconds.
+   * for now, tick rate is hardcoded as 5 seconds.
    */
   const {width} = useWindowDimensions();
   const data = useSensor();
+  const chartRef = useRef(null);
 
   const xMax = Math.max(...data.map(i => i.x));
   const yMax = Math.max(...data.map(i => i.y))*4/3;
   const tickRate = 5;
 
+  useEffect(() => {
+    chartRef?.current?.setViewportOrigin({ x: xMax, y: 0 });
+  })
+
   return (
     <View>
       <H3>{name}</H3>
+      
       <Chart
         data={data}
         padding={{left: 25, bottom: 20, right: 20, top: 20}}
         style={{height: 200, width: width}}
         xDomain={{min: 0, max: xMax}}
         yDomain={{min: 0, max: yMax}}
+        {/* @ts-ignore */...[]}
+        ref={chartRef}
         viewport={{
           initialOrigin: {x: 0, y: 0},
           size: {width: tickRate*10, height: yMax},
@@ -104,6 +103,7 @@ function SensorsSection() {
   // sensorData array is retrieved somehow by some process detecting what sensors are available
   const sensors: SensorGraphProps[] = [
     {name: 'HeartRate (bpm against time/s)', color:'#44bd32', useSensor: fakeHeartRateHook},
+    {name: 'ySpeed (ms^2 against time/s)', color:'#823722', useSensor: useAccelerometer}
   ];
   return (
     <View>
@@ -119,15 +119,17 @@ function SensorsSection() {
 
 function App() {
   return (
-    <View>
-      <Text
-        style={css`
-          color: red;
-        `}>
-        lmao
-      </Text>
-      <SensorsSection />
-    </View>
+    <SensorProvider>
+      <View>
+        <Text
+          style={css`
+            color: red;
+          `}>
+          lmao
+        </Text>
+        <SensorsSection />
+      </View>
+    </SensorProvider>
   );
 }
 

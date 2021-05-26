@@ -1,31 +1,60 @@
-# SGuardApp
+# SCDF Innovation Challenge 2021
 
-## Description
-SGuard is a cloud-powered, voice-enabled chatbot application that empowers the public to offer aid to others in need regardless of their prior knowledge. 
+## Analysis of Problem
 
-SGuard does this by:
+> As we emerge stronger from COVID-19, how might we leverage technology to evolve emergency response and public safety strategies to enhance the capability and resilience of SCDF to respond better in a pandemic situation?
 
-1. Detecting incidents such as falls and collapses
-2. Alerting the SCDF and passers-by once these incidents have occured
-3. Providing audio guidance on how to help victims
+In recent times, the SCDF has had a paradigm shift towards crowdsourcing first responders as a novel public safety strategy to improve emergency response. This is most prominent in SCDF’s [MyResponder App](https://www.scdf.gov.sg/home/community-volunteers/mobile-applications), through which SCDF can engage Certified First Responders (CFRs). When a medical emergency occurs and 995 is called, SCDF can call upon a CFR to provide help in the 5 to 10 min window before they arrive.
+
+However, there have been problems faced with regards to uptake - As of July 2019, only 46,689 people have the app installed, and only 24.1% of the users actually respond [[1]](#reference-1). This strategy also requires all cases to go through the SCDF before reaching the CFRs, taking slightly more precious time.
+
+Additionally, due to circuit breakers and crowd restrictions during pandemic situations, there are 2 new problems:
+
+- emptier places means more time is taken for someone to notice a medical emergency.
+- fewer first responders outside means it is less likely for a first responder to be near enough to the emergency site to offer help.
+
+## Our Solution
+
+<img src="./Readme/SGuard.png"/>
+
+> SGuard is a Voice-Enabled Emergency Assistant that empowers the public to be First Responders (SGuardians) to medical emergencies.
+
+SGuard monitors the vitals of its user via his or her phone and/or smartwatch. When the user collapses, the in-app AI Voicebot loudly calls for help to draw the attention of nearby civilians (SGuardians). SGuard then guides the SGuardian in doing a preliminary diagnosis via interactive verbal conversation. This is to provide aid to the user during the 5 to 10 min window before SCDF arrives, increasing their survivability.
+
+## Key Features
+
+- IBM Cloud powered AI Voicebot that can diagnose common causes for collapsing & provide interactive verbal guidance
+- Usage of phone and/or smartwatch sensors to detect medical emergencies
+- Single user utility incentivizes uptake compared to relying on others to have the app
+- Any member of the public can respond and become an SGuardian
+
+## Comparison with MyResponder App
+
+|Problem|Solution|
+|-|-|
+|Member of public unsure how to help|In-app AI voicebot provides guidance|
+|Less CFRs outside due to pandemic|Larger pool of potential responders|
+|Pandemic situation with less people around; takes longer for medical emergencies to be noticed|Automated detection|
+|Low response rate given low number of CFRs|Any member of public can respond|
+|Low uptake of MyResponder App | Single user utility which incentivizes uptake|
+|Long time delay due to the centralised nature of MyResponder App|P2P SGuard app bypasses central authorities, enabling faster responses|
+
+<img src="./Readme/Response Flowchart.svg"/>
+
+
+## Team
+
+Profile picture/Personalize yourself, your role (maybe the one submitted) and your slogan/credentials
 
 ## How it works
-<img src="./Readme/Architecture diagram/Architecture design V1.svg">
+<img src="./Readme/Architecture diagram/Architecture design V1.svg"/>
 
-1. A user falls down.
-2. The SGuard app detects an anomalous accelerometer reading and proceeds to
-    - Emit an alarm using the phone speaker to alert passers-by
-    - Call the SCDF using the phone's cellular service
-    - Record speech using the phone's microphone
-    - Send a SOS alert along with the recorded speech (in wav format) to the SGuard API
-3. SGuard API relays the information to Node-RED
-4. Node-RED calls the Watson Speech to Text service hosted in IBM Cloud. 
-5. Watson Speech to Text uses machine learning to decode the user's speech.
-6. Watson Speech to Text replies with a transcript of the user's speech and Node-RED calls Watson Assistant service hosted in IBM Cloud.
-7. Watson Assistant uses natural language understanding and machine learning to extract entities and intents of the user question.
-8. Source information on how to assist the victim from trusted SCDF data.
-9. Watson Assistant replies to the user inquiry and Node-RED sends the text transcript to Watson Text to Speech.
-10. Watson Text to Speech encodes the message in the user's language.
-11. Node-RED sends the response (.wav file) to the SGuard API.
-12. The SGuard API relays the response to the SGuard app. 
-13. The SGuard app plays the response using the phone speakers.
+Our SGuard Voicebot works through the following manner:
+
+1. Phone microphone records speech of SGuardian which is sent to our backend Node-RED server
+2. Node-RED server calls Watson Speech to Text Service to use machine learning to translate user speech
+3. Node-RED server receives transcript and passes it to Watson Assistant service.
+4. Watson Assistant, finetuned with SCDF guidelines on how to perform first aid, uses natural language understanding to formulate the best response to guide the SGuardian.
+5. Watson Assistant's response is sent to Watson Text to Speech.
+6. Watson Text to Speech encodes the message in the user's language.
+7. Node-RED server sends the verbal response back to the SGuard app.
