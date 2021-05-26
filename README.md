@@ -47,7 +47,7 @@ SGuard monitors the vitals of its user via his or her phone and/or smartwatch. W
 Profile picture/Personalize yourself, your role (maybe the one submitted) and your slogan/credentials
 
 ## How it works
-<img src="./Readme/Architecture diagram/Architecture design V3.svg"/>
+<img src="./Readme/Architecture diagram/Architecture design V3.png"/>
 
 ## References
 <a id="reference-1">1.</a>
