@@ -4,6 +4,7 @@
 
 import React, {useEffect, useRef, useState} from 'react';
 import styled, {css} from '@emotion/native';
+import SensorService from './SensorService';
 
 import {
   FlatList,
@@ -23,7 +24,6 @@ import {
   H2,
   H3,
 } from './Misc';
-import { SensorProvider,useAccelerometer } from './Sensor';
 
 interface SensorGraphProps {
   name: string;
@@ -40,6 +40,11 @@ function fakeHeartRateHook() {
     {x: 30, y: 20},
     {x: 40, y: 80},
     {x: 50, y: 60},
+    {x: 60, y: 12},
+    {x: 70, y: 58},
+    {x: 80, y: 98},
+    {x: 90, y: 45},
+    {x: 99, y: 30},
   ]);
   return data;
 }
@@ -103,7 +108,7 @@ function SensorsSection() {
   // sensorData array is retrieved somehow by some process detecting what sensors are available
   const sensors: SensorGraphProps[] = [
     {name: 'HeartRate (bpm against time/s)', color:'#44bd32', useSensor: fakeHeartRateHook},
-    {name: 'ySpeed (ms^2 against time/s)', color:'#823722', useSensor: useAccelerometer}
+    //{name: 'ySpeed (ms^2 against time/s)', color:'#823722', useSensor: useAccelerometer}
   ];
   return (
     <View>
@@ -118,18 +123,21 @@ function SensorsSection() {
 }
 
 function App() {
+  const [state, setState] = useState("hello world");
+  useEffect(() => {
+    SensorService.getSecret(2).then(setState);
+  });
+  
   return (
-    <SensorProvider>
-      <View>
-        <Text
-          style={css`
-            color: red;
-          `}>
-          lmao
-        </Text>
-        <SensorsSection />
-      </View>
-    </SensorProvider>
+    <View>
+      <Text
+        style={css`
+          color: red;
+        `}>
+        {state}
+      </Text>
+      <SensorsSection />
+    </View>
   );
 }
 
