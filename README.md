@@ -15,7 +15,7 @@ Additionally, due to circuit breakers and crowd restrictions during pandemic sit
 
 ## Our Solution
 
-<img src="./Readme/SGuard.png"/>
+<img src="./Readme/SGuard.png" width = 100%/>
 
 > SGuard is a Voice-Enabled Emergency Assistant that empowers the public to be First Responders (SGuardians) to medical emergencies.
 
