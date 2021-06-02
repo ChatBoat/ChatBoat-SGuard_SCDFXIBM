@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SGuardApp</string>
+    <string name="foregroundServiceTitle">SGuard Fall Detection</string>
+    <string name="foregroundServiceDesc">SGuard is using your phone sensors in the background</string>
+    <string name="channel_name">Fall Detection Service Notification</string>
+    <string name="channel_description">Notification channel for foreground service used to detect falls</string>
 </resources>
