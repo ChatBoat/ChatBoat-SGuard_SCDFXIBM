@@ -4,13 +4,15 @@
 
 import React, {useEffect, useRef, useState} from 'react';
 import styled, {css} from '@emotion/native';
-import SensorService from './SensorService';
+import FallDetectionService from './FallDetection';
+import RNCallKeep from 'react-native-callkeep';
 
 import {
   FlatList,
   View,
   Text,
   useWindowDimensions,
+  Button,
 } from 'react-native';
 import {
   Area,
@@ -125,8 +127,42 @@ function SensorsSection() {
 function App() {
   const [state, setState] = useState("hello world");
   useEffect(() => {
-    SensorService.getSecret(2).then(setState);
+    FallDetectionService.getSecret(2).then(setState);
   });
+
+  const getPermissions = () => {
+    /*
+    * background tasks might be here idk
+    */
+    const options = {
+      ios: {
+        appName: 'My app name',
+      },
+      android: {
+        alertTitle: 'Permissions required',
+        alertDescription: 'This application needs to access your phone accounts',
+        cancelButton: 'Cancel',
+        okButton: 'ok',
+        imageName: 'phone_account_icon',
+        additionalPermissions: [''],
+        // Required to get audio in background when using Android 11
+        foregroundService: {
+          channelId: 'EMERGENCY_CALL_SERVICE',
+          channelName: 'Lmao you dead',
+          notificationTitle: 'pew pew',
+          notificationIcon: 'phone_account_icon',
+        },
+      },
+    };
+
+    RNCallKeep.setup(options).then(accepted => {
+      
+    });
+    FallDetectionService.emergencyEventEmitter.addListener('succ', data => {
+      console.debug(data); //will probably send some sensor data? idk
+      RNCallKeep.startCall('well_test_call_1', '+6591504882', 'chatbot');
+    });
+  };
   
   return (
     <View>
@@ -137,6 +173,9 @@ function App() {
         {state}
       </Text>
       <SensorsSection />
+      <Button title="Start FallDetectionService" onPress={()=>FallDetectionService.startFallDetectionService(1000)}></Button>
+      <Button title="Register chatbot permissions" onPress={getPermissions}></Button>
+      <Button title="skip" onPress={()=>{RNCallKeep.startCall('well_test_call_1', '+6591504882', 'chatbot')}}></Button>
     </View>
   );
 }

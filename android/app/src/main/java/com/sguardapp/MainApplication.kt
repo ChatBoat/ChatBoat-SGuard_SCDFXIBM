@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.facebook.react.*
 import com.facebook.soloader.SoLoader
-import com.sguardapp.sensorservice.SensorServicePackage
+import com.sguardapp.falldetection.FallDetectionPackage
 import java.lang.reflect.InvocationTargetException
 
 class MainApplication : Application(), ReactApplication {
@@ -12,10 +12,8 @@ class MainApplication : Application(), ReactApplication {
         override fun getJSMainModuleName() = "index"
         override fun getUseDeveloperSupport() = BuildConfig.DEBUG
 
-        override fun getPackages(): List<ReactPackage> {
-            val packages = PackageList(this).packages
-            packages.add(SensorServicePackage())
-            return packages
+        override fun getPackages() = PackageList(this).packages.apply {
+            add(FallDetectionPackage())
         }
     }
 
