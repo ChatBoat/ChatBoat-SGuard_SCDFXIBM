@@ -1,6 +1,12 @@
 # SCDF Innovation Challenge 2021
+## Table of contents
+* [Analysis of problem](#analysis-of-problem)
+* [Our solution](#our-solution)
+* [How it works](#how-it-works)
+* [Meet the team](#team)
+* [References](#references)
 
-## Analysis of Problem
+## Analysis of problem
 
 > As we emerge stronger from COVID-19, how might we leverage technology to evolve emergency response and public safety strategies to enhance the capability and resilience of SCDF to respond better in a pandemic situation?
 
@@ -15,22 +21,22 @@ Additionally, due to circuit breakers and crowd restrictions during pandemic sit
 
 ## Our Solution
 
-<img src="./Readme/SGuard.png"/>
+<img src="./Readme/SGuard.png" width = 100%/>
 
 > SGuard is a Voice-Enabled Emergency Assistant that empowers the public to be First Responders (SGuardians) to medical emergencies.
 
 SGuard monitors the vitals of its user via his or her phone and/or smartwatch. When the user collapses, the in-app AI Voicebot loudly calls for help to draw the attention of nearby civilians (SGuardians). SGuard then guides the SGuardian in doing a preliminary diagnosis via interactive verbal conversation. This is to provide aid to the user during the 5 to 10 min window before SCDF arrives, increasing their survivability.
 
-## Key Features
+### Key Features
 
 - IBM Cloud powered AI Voicebot that can diagnose common causes for collapsing & provide interactive verbal guidance
 - Usage of phone and/or smartwatch sensors to detect medical emergencies
 - Single user utility incentivizes uptake compared to relying on others to have the app
 - Any member of the public can respond and become an SGuardian
 
-## Comparison with MyResponder App
+### Comparison with MyResponder App
 
-|Problem|Solution|
+|Problem|Proposed Solution|
 |-|-|
 |Member of public unsure how to help|In-app AI voicebot provides guidance|
 |Less CFRs outside due to pandemic|Larger pool of potential responders|
@@ -41,13 +47,10 @@ SGuard monitors the vitals of its user via his or her phone and/or smartwatch. W
 
 <img src="./Readme/Response Flowchart.svg"/>
 
-
-## Team
-
-Profile picture/Personalize yourself, your role (maybe the one submitted) and your slogan/credentials
-
 ## How it works
-<img src="./Readme/Architecture diagram/Architecture design V4.png"/>
+<img src="./Readme/Architecture diagram/Architecture design V5.png"/>
+
+## Meet the Team
 
 ## References
 <a id="reference-1">1.</a>
