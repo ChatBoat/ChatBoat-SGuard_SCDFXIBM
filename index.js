@@ -5,6 +5,10 @@
 import {AppRegistry} from 'react-native';
 import App from './src/App';
 import {name as appName} from './app.json';
+import MMKVStorage, {create} from 'react-native-mmkv-storage';
+
+const MMKV = new MMKVStorage.Loader().initialize();
+export const useStorage = create(MMKV);
 
 AppRegistry.registerComponent(appName, () => App);
 

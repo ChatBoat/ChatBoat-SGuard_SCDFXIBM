@@ -5478,8 +5478,6 @@ react-is@^16.7.0, react-is@^16.8.1:
 
 react-native-callkeep@./react-native-callkeep:
   version "4.2.0"
-  resolved "https://registry.yarnpkg.com/react-native-callkeep/-/react-native-callkeep-4.2.0.tgz#84f20eaf07a4b3494502bf9156dbdbf4b7617122"
-  integrity sha512-52cA2izvw46K3M6SElV8cH+jUxvH9CYOrsnpIgnBtWLnJDcCehRNIZ0rSGfV3entxBgErCLBeIHHv9nEkMDdFQ==
 
 react-native-codegen@^0.0.6:
   version "0.0.6"
@@ -5500,6 +5498,11 @@ react-native-gesture-handler@^1.10.3:
     hoist-non-react-statics "^3.3.0"
     invariant "^2.2.4"
     prop-types "^15.7.2"
+
+react-native-mmkv-storage@^0.5.9:
+  version "0.5.9"
+  resolved "https://registry.yarnpkg.com/react-native-mmkv-storage/-/react-native-mmkv-storage-0.5.9.tgz#f4333c6fcae6475a786b1c0f907ae478bad2c91a"
+  integrity sha512-SfjUIpC0pkhdLx1zKYkEkzqfb+sOus1nr/RoXcesLhjz/qRYmnDIULsrebl6peHTNRAbgmhgumr6MoFj0m7EFA==
 
 react-native-responsive-linechart@^5.7.1:
   version "5.7.1"
