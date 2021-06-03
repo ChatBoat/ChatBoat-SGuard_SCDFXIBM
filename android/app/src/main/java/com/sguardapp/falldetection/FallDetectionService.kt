@@ -52,7 +52,6 @@ class FallDetectionService : Service(), SensorEventListener {
 
     private val notificationId = 42069
 
-
     /** Algorithm to determine if given sensor values constitute a fall */
     private fun isOverThreshold(values: FloatArray): Boolean {
         /* TODO:
@@ -66,7 +65,12 @@ class FallDetectionService : Service(), SensorEventListener {
         return v > 7
     }
 
+    private var lastEmergencyTimestamp: Long = 0
+    private val debounceDelay = 2000
     private fun initiateEmergency() {
+        if(System.currentTimeMillis() - lastEmergencyTimestamp < debounceDelay) return
+        lastEmergencyTimestamp = System.currentTimeMillis()
+
         Intent(this, MainActivity::class.java)
             .addFlags(FLAG_ACTIVITY_NEW_TASK)
             .also(::startActivity)
