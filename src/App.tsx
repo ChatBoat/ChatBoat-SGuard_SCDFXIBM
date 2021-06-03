@@ -6,6 +6,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import styled, {css} from '@emotion/native';
 import FallDetectionService from './FallDetection';
 import RNCallKeep from 'react-native-callkeep';
+import {useStorage} from '../index.js';
 
 import {
   FlatList,
@@ -13,6 +14,7 @@ import {
   Text,
   useWindowDimensions,
   Button,
+  TextInput,
 } from 'react-native';
 import {
   Area,
@@ -125,7 +127,11 @@ function SensorsSection() {
 }
 
 function App() {
-  const [state, setState] = useState("hello world");
+  const [state, setState] = useState('hello world');
+  const [phoneNum, setPhoneNum] = useStorage('phone_number');
+  if (phoneNum == null) {
+    setPhoneNum('91504882');
+  }
   useEffect(() => {
     FallDetectionService.getSecret(2).then(setState);
   });
@@ -158,11 +164,15 @@ function App() {
     RNCallKeep.setup(options).then(accepted => {
       
     });
+    FallDetectionService.emergencyEventEmitter.removeAllListeners('succ');
     FallDetectionService.emergencyEventEmitter.addListener('succ', data => {
       console.debug(data); //will probably send some sensor data? idk
-      RNCallKeep.startCall('well_test_call_1', '+6591504882', 'chatbot');
+      RNCallKeep.startCall('well_test_call_1', phoneNum, 'chatbot');
     });
+    ;
   };
+
+  useEffect(getPermissions,[]);
   
   return (
     <View>
@@ -173,9 +183,25 @@ function App() {
         {state}
       </Text>
       <SensorsSection />
+      <View style={css`
+        padding: 20px;
+        flex-direction: row;
+      `}>
+        <Text style={css`flex: 1; align-self: center`}>Phone Number: </Text>
+        <TextInput
+          style={css`
+            border-width: 1px;
+            flex: 2;
+            padding: 4px 10px;
+          `}
+          onChangeText={setPhoneNum}
+          value={phoneNum}
+          placeholder="set phone number"
+          keyboardType="phone-pad"
+        />
+      </View>
       <Button title="Start FallDetectionService" onPress={()=>FallDetectionService.startFallDetectionService(1000)}></Button>
-      <Button title="Register chatbot permissions" onPress={getPermissions}></Button>
-      <Button title="skip" onPress={()=>{RNCallKeep.startCall('well_test_call_1', '+6591504882', 'chatbot')}}></Button>
+      <Button title="Test calling directly" onPress={()=>{RNCallKeep.startCall('well_test_call_1', phoneNum, 'chatbot')}}></Button>
     </View>
   );
 }

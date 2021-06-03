@@ -17,6 +17,7 @@
     "react-native": "0.64.1",
     "react-native-callkeep": "./react-native-callkeep",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-mmkv-storage": "^0.5.9",
     "react-native-responsive-linechart": "^5.7.1",
     "react-native-svg": "^12.1.1"
   },

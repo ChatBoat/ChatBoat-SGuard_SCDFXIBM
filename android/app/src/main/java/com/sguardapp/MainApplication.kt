@@ -2,6 +2,7 @@ package com.sguardapp
 
 import android.app.Application
 import android.content.Context
+import com.ammarahmed.mmkv.RNMMKVJSIModulePackage
 import com.facebook.react.*
 import com.facebook.soloader.SoLoader
 import com.sguardapp.falldetection.FallDetectionPackage
@@ -15,6 +16,8 @@ class MainApplication : Application(), ReactApplication {
         override fun getPackages() = PackageList(this).packages.apply {
             add(FallDetectionPackage())
         }
+
+        override fun getJSIModulePackage() = RNMMKVJSIModulePackage()
     }
 
     override fun getReactNativeHost() = mReactNativeHost
