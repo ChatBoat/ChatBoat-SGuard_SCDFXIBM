@@ -38,6 +38,7 @@ import kotlin.math.absoluteValue
  * see: TYPE_SIGNIFICANT_MOTION
  */
 class FallDetectionService : Service(), SensorEventListener {
+    private val tag = "SensorServiceModule"
 
     private var sensorManager: SensorManager? = null
     private var linAccelSensor: Sensor? = null
@@ -61,7 +62,7 @@ class FallDetectionService : Service(), SensorEventListener {
          */
         val (x, y, z) = values
         val v = x.absoluteValue + y.absoluteValue + z.absoluteValue
-        //Log.d("SensorServiceModule", String.format("Sensor Value: %f", v))
+        //Log.d(TAG, String.format("Sensor Value: %f", v))
         return v > 7
     }
 
@@ -70,21 +71,23 @@ class FallDetectionService : Service(), SensorEventListener {
     private fun initiateEmergency() {
         if(System.currentTimeMillis() - lastEmergencyTimestamp < debounceDelay) return
         lastEmergencyTimestamp = System.currentTimeMillis()
-
+        /*
         Intent(this, MainActivity::class.java)
             .addFlags(FLAG_ACTIVITY_NEW_TASK)
             .also(::startActivity)
+         */
         (application as MainApplication).reactNativeHost.reactInstanceManager.currentReactContext?.getJSModule(
             DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)
-            ?.emit("succ", "hello world") //send actually useful data instead
-        Log.d("FallDetectionService","emergency!")
+            ?.emit(FallDetectionModule.emergencyEvent, "hello world") //send actually useful data instead
+        Log.d(tag,"emergency!")
+        stopSelf()
     }
 
     private fun buildForegroundNotification() {
         val pendingIntent = Intent(this, this::class.java).let {
             PendingIntent.getActivity(this, 0, it, 0)
         }
-        foregroundNotification = NotificationCompat.Builder(this, "FALL_DETECTION_SERVICE")
+        foregroundNotification = NotificationCompat.Builder(this, FallDetectionModule.channelId)
             .setContentTitle(getString(R.string.foregroundServiceTitle))
             .setContentText(getString(R.string.foregroundServiceDesc))
             .setSmallIcon(android.R.drawable.ic_dialog_info)
