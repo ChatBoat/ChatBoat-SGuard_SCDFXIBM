@@ -50,6 +50,16 @@ SGuard monitors the vitals of its user via his or her phone and/or smartwatch. W
 ## How it works
 <img src="./Readme/Architecture diagram/Architecture design V5.png"/>
 
+## Technologies Used
+- [IBM Watson Assistant](https://www.ibm.com/sg-en/cloud/watson-assistant)
+- [IBM Watson Text to Speech](https://www.ibm.com/sg-en/cloud/watson-text-to-speech)
+- [IBM Watson Speech to Text](https://www.ibm.com/sg-en/cloud/watson-speech-to-text)
+- [IBM Watson Assistant Phone Integration](https://cloud.ibm.com/docs/assistant?topic=assistant-deploy-phone)
+- [React Native](https://reactnative.dev/)
+- [react-native-twilio-phone](https://github.com/MrHertal/react-native-twilio-phone)
+  - [Twilio voIP Client SDK](https://www.twilio.com/docs/voice/voip-sdk/android)
+- [Twilio Functions](https://www.twilio.com/docs/runtime/functions)
+
 ## Meet the Team
 
 ## References
