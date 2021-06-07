@@ -18,6 +18,7 @@ import com.sguardapp.R
 // https://developer.android.com/guide/topics/sensors/sensors_overview
 class FallDetectionModule(ctx: ReactApplicationContext) : ReactContextBaseJavaModule(ctx) {
 
+    private val tag = "FallDetectionModule"
     private val sensorManager =
         ctx.getSystemService(Context.SENSOR_SERVICE) as SensorManager
     private val notificationManager =
@@ -26,6 +27,11 @@ class FallDetectionModule(ctx: ReactApplicationContext) : ReactContextBaseJavaMo
         sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION)
 
     private var test: Int? = null
+
+    companion object {
+        const val channelId = "com.sguardapp.falldetection"
+        const val emergencyEvent = "succ"
+    }
 
     /*
      * So primary constructor (super()) runs first, then init block,
@@ -37,7 +43,7 @@ class FallDetectionModule(ctx: ReactApplicationContext) : ReactContextBaseJavaMo
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             with(reactApplicationContext) {
                 NotificationChannel(
-                    "FALL_DETECTION_SERVICE",
+                    channelId,
                     getString(R.string.channel_name),
                     NotificationManager.IMPORTANCE_DEFAULT
                 ).let {
@@ -56,7 +62,7 @@ class FallDetectionModule(ctx: ReactApplicationContext) : ReactContextBaseJavaMo
      */
     @ReactMethod
     fun startFallDetectionService(interval: Double, maxDelay: Double) {
-        Log.d("FallDetectionModule", "Starting Service")
+        Log.d(tag, "Starting Service")
         with(reactApplicationContext) {
             Intent(this, FallDetectionService::class.java).run {
                 putExtra("interval", interval.toInt())
@@ -69,7 +75,7 @@ class FallDetectionModule(ctx: ReactApplicationContext) : ReactContextBaseJavaMo
                         ::startService
                 )
         }
-        Log.d("FallDetectionModule", "Started Service")
+        Log.d(tag, "Started Service")
     }
 
     @ReactMethod
