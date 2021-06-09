@@ -1,8 +1,9 @@
 # SCDF Innovation Challenge 2021
 
 #### Shortcuts
-- Part d) Detailed report: <https://docs.google.com/document/d/1qtkjDzIEyc91HhJRIEtnFvot0rDS0ubNU5xPAsf2_HU/edit?usp=sharing>
-- Part b) Pitch video: <https://www.youtube.com/watch?v=dQw4w9WgXcQ>
+- Part d) Detailed report: <tiny.cc/chatboat-sguard-2021>
+- Part b) Pitch video: <https://youtu.be/anuxFbkIII4>
+[![Pitch Video](https://img.youtube.com/vi/anuxFbkIII4/maxresdefault.jpg)](https://youtu.be/anuxFbkIII4)
 
 ## Table of contents
 * [Meet the Team](#meet-the-team)
