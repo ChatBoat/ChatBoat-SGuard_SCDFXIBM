@@ -17,14 +17,14 @@ We are a group of 5 graduates from Raffles Institution (RI) with diverse skills 
 
 > As we emerge stronger from COVID-19, how might we leverage technology to evolve emergency response and public safety strategies to enhance the capability and resilience of SCDF to respond better in a pandemic situation?
 
-In recent times, the SCDF has had a paradigm shift towards crowdsourcing first responders as a novel public safety strategy to improve emergency response. This is most prominent in SCDF’s [MyResponder App](https://www.scdf.gov.sg/home/community-volunteers/mobile-applications), through which SCDF can engage Certified First Responders (CFRs). When a medical emergency occurs and 995 is called, SCDF can call upon a CFR to provide help in the 5 to 10 min window before they arrive.
+SCDF is undergoing a paradigm shift towards crowdsourcing first responders as a novel public safety strategy to improve emergency response. This is most prominent in SCDF’s [myResponder App](https://www.scdf.gov.sg/home/community-volunteers/mobile-applications), through which SCDF can engage Certified First Responders (CFRs). When 995 is called, SCDF calls upon CFRs to provide help in the 5-10 min window before they arrive.
 
-However, there have been problems faced with regards to uptake - As of July 2019, only 46,689 people have the app installed, and only 24.1% of the users actually respond [[1]](#reference-1). This strategy also requires all cases to go through the SCDF before reaching the CFRs, taking slightly more precious time.
+However, there have been uptake problems - As of July 2019, only 46,689 people have the app installed, and only 24.1% of the users actually respond [[1]](#reference-1). This strategy also requires all cases to go through SCDF before reaching the CFRs, taking slightly more precious time.
 
-Additionally, due to circuit breakers and crowd restrictions during pandemic situations, there are 2 new problems:
+Additionally, in pandemic situations, there are 2 new problems:
 
-- emptier places means more time is taken for someone to notice a medical emergency.
-- fewer first responders outside means it is less likely for a first responder to be near enough to the emergency site to offer help.
+- emptier places means it takes more time for someone to notice a medical emergency.
+- fewer CFRs outside means it is unlikely for one to be near enough to the emergency site to offer help.
 
 ## Our Solution
 
@@ -32,14 +32,7 @@ Additionally, due to circuit breakers and crowd restrictions during pandemic sit
 
 > SGuard is a Voice-Enabled Emergency Assistant that empowers the public to be First Responders (SGuardians) to medical emergencies.
 
-SGuard monitors the vitals of its user via his or her phone and/or smartwatch. When the user collapses, the in-app AI Voicebot loudly calls for help to draw the attention of nearby civilians (SGuardians). SGuard then guides the SGuardian in doing a preliminary diagnosis via interactive verbal conversation. This is to provide aid to the user during the 5 to 10 min window before SCDF arrives, increasing their survivability.
-
-### Key Features
-
-- IBM Cloud powered AI Voicebot that can diagnose common causes for collapsing & provide interactive verbal guidance
-- Usage of phone and/or smartwatch sensors to detect medical emergencies
-- Single user utility incentivizes uptake compared to relying on others to have the app
-- Any member of the public can respond and become an SGuardian
+SGuard monitors the vitals of its user via his or her phone and/or smartwatch. When the user collapses, the in-app AI Voicebot loudly calls for help to draw the attention of nearby civilians (SGuardians). SGuard then guides the SGuardian in doing a preliminary diagnosis via interactive verbal conversation. This is to provide aid to the user during the 5-10 min window before SCDF arrives, increasing their survivability.
 
 ### Comparison with MyResponder App
 
