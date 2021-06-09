@@ -6,6 +6,9 @@
 * [Meet the team](#team)
 * [References](#references)
 
+## Meet the Team
+<img src="./readme/profiles.png" width = 100%/>
+
 ## Analysis of problem
 
 > As we emerge stronger from COVID-19, how might we leverage technology to evolve emergency response and public safety strategies to enhance the capability and resilience of SCDF to respond better in a pandemic situation?
@@ -21,7 +24,7 @@ Additionally, due to circuit breakers and crowd restrictions during pandemic sit
 
 ## Our Solution
 
-<img src="./Readme/SGuard.png" width = 100%/>
+<img src="./readme/SGuard.png" width = 100%/>
 
 > SGuard is a Voice-Enabled Emergency Assistant that empowers the public to be First Responders (SGuardians) to medical emergencies.
 
@@ -45,10 +48,25 @@ SGuard monitors the vitals of its user via his or her phone and/or smartwatch. W
 |Low uptake of MyResponder App | Single user utility which incentivizes uptake|
 |Long time delay due to the centralised nature of MyResponder App|P2P SGuard app bypasses central authorities, enabling faster responses|
 
-<img src="./Readme/Response Flowchart.svg"/>
+<img src="./readme/Response Flowchart.svg"/>
 
 ## How it works
-<img src="./Readme/Architecture diagram/Architecture design V5.png"/>
+<img src="./readme/architecture.png"/>
+
+1. User falls down.
+2. The SGuard app detects anomalous sensor readings and proceeds to
+    - Emit an alarm using the phone speaker to alert passers-by
+    -  Record speech using the phone's microphone
+
+3. Initiate a call with the voicebot
+4. Once the call has been initiated, Twilio relays the voice recording to Watson assistant
+5. Watson Speech-to-Text uses machine learning to decode the user's speech and passes the transcript back to Watson assistant.
+6. Watson Assistant uses natural language understanding and machine learning to extract entities and intents of the user question.
+7. Watson Assistant chooses the best response out of those in its answer storage.
+Watson Text to Speech encodes the message in the user's language.
+8. Twilio relays the message back to the phone.
+9. The SGuard app plays the message and awaits further queries.
+We also intend to include a Node-RED cloud server to facilitate future integration with other SCDF services, such as the MyResponder app. 
 
 ## Technologies Used
 - [IBM Watson Assistant](https://www.ibm.com/sg-en/cloud/watson-assistant)
@@ -60,7 +78,6 @@ SGuard monitors the vitals of its user via his or her phone and/or smartwatch. W
   - [Twilio voIP Client SDK](https://www.twilio.com/docs/voice/voip-sdk/android)
 - [Twilio Functions](https://www.twilio.com/docs/runtime/functions)
 
-## Meet the Team
 
 ## References
 <a id="reference-1">1.</a>
