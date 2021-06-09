@@ -7,6 +7,10 @@
 * [Meet the team](#team)
 * [References](#references)
 
+## Shortcuts
+Part d) Detailed report: <https://docs.google.com/document/d/1qtkjDzIEyc91HhJRIEtnFvot0rDS0ubNU5xPAsf2_HU/edit?usp=sharing>
+Part b) Pitch video: <https://www.youtube.com/watch?v=dQw4w9WgXcQ>
+
 ## Meet the Team
 **Team ChatBoat**
 
