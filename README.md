@@ -1,6 +1,6 @@
 # SCDF Innovation Challenge 2021
 ## Table of contents
-+ [Meet the Team](#meet-the-team)
+* [Meet the Team](#meet-the-team)
 * [Analysis of problem](#analysis-of-problem)
 * [Our solution](#our-solution)
 * [How it works](#how-it-works)
