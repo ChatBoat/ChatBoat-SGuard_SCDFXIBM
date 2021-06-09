@@ -12,8 +12,6 @@
 * [Meet the team](#team)
 * [References](#references)
 
-
-
 ## Meet the Team
 **Team ChatBoat**
 
