@@ -7,7 +7,10 @@
 * [References](#references)
 
 ## Meet the Team
-<img src="./readme/profiles.png" width = 100%/>
+**Team chatboat**
+
+We are a group of 5 graduates from Raffles Institution (RI) with diverse skills and backgrounds but with the common goal of wanting to make a difference in society. 
+<img src="./readme/Profiles.png" width = 100%/>
 
 ## Analysis of problem
 
