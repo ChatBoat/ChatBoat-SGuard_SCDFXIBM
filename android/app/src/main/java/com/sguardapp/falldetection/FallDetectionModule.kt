@@ -1,5 +1,6 @@
 package com.sguardapp.falldetection
 
+import android.app.ActivityManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -21,6 +22,8 @@ class FallDetectionModule(ctx: ReactApplicationContext) : ReactContextBaseJavaMo
     private val tag = "FallDetectionModule"
     private val sensorManager =
         ctx.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+    private val activityManager =
+        ctx.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
     private val notificationManager =
         ctx.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
     private val linAccelSensor =
@@ -30,7 +33,15 @@ class FallDetectionModule(ctx: ReactApplicationContext) : ReactContextBaseJavaMo
 
     companion object {
         const val channelId = "com.sguardapp.falldetection"
-        const val emergencyEvent = "succ"
+        const val FALL_DETECTED = "FALL_DETECTED"
+        const val FALL_DETECTION_STARTED = "FALL_DETECTION_STARTED"
+        const val FALL_DETECTION_STOPPED = "FALL_DETECTION_STOPPED"
+    }
+
+    override fun getConstants() = HashMap<String, String>().apply {
+        put(FALL_DETECTED, FALL_DETECTED)
+        put(FALL_DETECTION_STARTED, FALL_DETECTION_STARTED)
+        put(FALL_DETECTION_STOPPED, FALL_DETECTION_STOPPED)
     }
 
     /*
@@ -79,8 +90,19 @@ class FallDetectionModule(ctx: ReactApplicationContext) : ReactContextBaseJavaMo
     }
 
     @ReactMethod
+    fun isServiceRunning(promise: Promise) {
+        promise.resolve(activityManager.getRunningServices(Integer.MAX_VALUE)
+            .any { it.service.className == FallDetectionService::class.java.name })
+    }
+
+    @ReactMethod
     fun stopFallDetectionService() {
-        //No u.
+        reactApplicationContext.stopService(
+            Intent(
+                reactApplicationContext,
+                FallDetectionService::class.java
+            )
+        )
     }
 
     @ReactMethod

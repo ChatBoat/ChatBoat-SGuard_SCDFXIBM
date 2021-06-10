@@ -1,14 +1,22 @@
-import {NativeModules, NativeEventEmitter} from 'react-native';
-const {FallDetectionModule} = NativeModules;
+import { NativeModules, NativeEventEmitter } from 'react-native'
+const { FallDetectionModule } = NativeModules
+export const { FALL_DETECTED, FALL_DETECTION_STARTED, FALL_DETECTION_STOPPED } =
+	FallDetectionModule.getConstants()
 
-function startFallDetectionService(interval = 500, maxDelay = 100000) {
-	FallDetectionModule.startFallDetectionService(interval, maxDelay);
+export function startFallDetectionService(interval = 500, maxDelay = 100000) {
+	FallDetectionModule.startFallDetectionService(interval, maxDelay)
 }
 
-function getSecret(ans) {
-	return FallDetectionModule.getSecret(ans);
+export function getSecret(ans) {
+	return FallDetectionModule.getSecret(ans)
 }
 
-const emergencyEventEmitter = new NativeEventEmitter(FallDetectionModule);
+export function stopFallDetectionService() {
+	FallDetectionModule.stopFallDetectionService()
+}
 
-export default {startFallDetectionService, getSecret, emergencyEventEmitter};
+export function isServiceRunning() {
+	return FallDetectionModule.isServiceRunning()
+}
+
+export const emergencyEventEmitter = new NativeEventEmitter(FallDetectionModule)

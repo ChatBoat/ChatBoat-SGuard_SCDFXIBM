@@ -1,34 +1,25 @@
-import { NativeEventEmitter } from "react-native";
+import { NativeEventEmitter } from 'react-native'
 
 /**
  * Provides access to background sensor reading service.
  */
-declare module FallDetectionService{
-	/**
-	 * Lmao readme
-	 * @param a A string
-	 */
-	function myFunction(a: string): string;
-	function myOtherFunction(a: number): number;
-	/*~ You can declare types that are available via importing the module */
-	interface SomeType {
-		name: string;
-		length: number;
-		extras?: string[];
-	}
-	/*~ You can declare properties of the module using const, let, or var */
-	const myField: number;
+declare module FallDetectionService {}
 
-	function getSecret(ans: number): Promise<string>;
+export const FALL_DETECTED
+export const FALL_DETECTION_STARTED
+export const FALL_DETECTION_STOPPED
 
-	/**
-	 * Lmao I hope it works
-	 * @param interval time between sensor polls in microseconds
-	 * @param maxDelay max delay allowed for power saving reasons in microseconds
-	 */
-	function startFallDetectionService(interval?: number, maxDelay?: number): void;
+export function getSecret(ans: number): Promise<string>
 
-	const emergencyEventEmitter: NativeEventEmitter;
-}
+/**
+ * Lmao I hope it works
+ * @param interval time between sensor polls in microseconds
+ * @param maxDelay max delay allowed for power saving reasons in microseconds
+ */
+export function startFallDetectionService(interval?: number, maxDelay?: number): void
 
-export default FallDetectionService;
+export function stopFallDetectionService()
+
+export function isServiceRunning(): Promise<boolean>
+
+export const emergencyEventEmitter: NativeEventEmitter

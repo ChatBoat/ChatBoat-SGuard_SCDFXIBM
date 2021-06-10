@@ -5,7 +5,7 @@ import { ControlPanel } from '../Control'
 import { Card, H3 } from '../Misc'
 import { SensorsSection } from '../Sensors'
 
-function Home() {
+function Medical() {
 	return (
 		<View style={{ height: '100%', backgroundColor: '#000E44' }}>
 			<ControlPanel />
@@ -17,4 +17,4 @@ function Home() {
 	)
 }
 
-export default Home
+export default Medical

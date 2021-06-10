@@ -5,16 +5,15 @@ import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.IBinder
 import android.util.Log
+import androidx.annotation.Nullable
 import androidx.core.app.NotificationCompat
 import com.facebook.react.modules.core.DeviceEventManagerModule
-import com.sguardapp.MainActivity
 import com.sguardapp.MainApplication
 import com.sguardapp.R
 import kotlin.math.absoluteValue
@@ -66,20 +65,25 @@ class FallDetectionService : Service(), SensorEventListener {
         return v > 7
     }
 
+    private fun sendEventToJS(event:String, data:Any?=null) {
+        (application as MainApplication).reactNativeHost.reactInstanceManager.currentReactContext?.getJSModule(
+            DeviceEventManagerModule.RCTDeviceEventEmitter::class.java
+        )
+            ?.emit(event, data)
+    }
+
     private var lastEmergencyTimestamp: Long = 0
     private val debounceDelay = 2000
     private fun initiateEmergency() {
-        if(System.currentTimeMillis() - lastEmergencyTimestamp < debounceDelay) return
+        if (System.currentTimeMillis() - lastEmergencyTimestamp < debounceDelay) return
         lastEmergencyTimestamp = System.currentTimeMillis()
         /*
         Intent(this, MainActivity::class.java)
             .addFlags(FLAG_ACTIVITY_NEW_TASK)
             .also(::startActivity)
          */
-        (application as MainApplication).reactNativeHost.reactInstanceManager.currentReactContext?.getJSModule(
-            DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)
-            ?.emit(FallDetectionModule.emergencyEvent, "hello world") //send actually useful data instead
-        Log.d(tag,"emergency!")
+        sendEventToJS(FallDetectionModule.FALL_DETECTED) //send useful data
+        Log.d(tag, "emergency!")
         stopSelf()
     }
 
@@ -114,11 +118,13 @@ class FallDetectionService : Service(), SensorEventListener {
 
         buildForegroundNotification()
 
+        sendEventToJS(FallDetectionModule.FALL_DETECTION_STARTED)
         return START_STICKY
     }
 
     override fun onDestroy() {
         sensorManager?.unregisterListener(this)
+        sendEventToJS(FallDetectionModule.FALL_DETECTION_STOPPED)
         super.onDestroy()
     }
 
