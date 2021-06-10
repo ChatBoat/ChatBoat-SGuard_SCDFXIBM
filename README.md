@@ -1,18 +1,20 @@
 # SCDF Innovation Challenge 2021
 
 #### Shortcuts
-- Part d) Detailed report: <https://tiny.cc/chatboat-sguard-2021>
-- Part b) Pitch video: <https://youtu.be/anuxFbkIII4>
+- Part (d) Detailed report: <https://tiny.cc/chatboat-sguard-2021>
+- Part (b) Pitch video: <https://youtu.be/anuxFbkIII4>
 
 ## Table of contents
-* [Meet the Team](#meet-the-team)
+* [Meet the team](#meet-the-team)
 * [Analysis of problem](#analysis-of-problem)
 * [Our solution](#our-solution)
-* [How it works](#how-it-works)
-* [Meet the team](#team)
+* [Architecture](#architecture)
+* [Demo walkthrough](#demo-walkthrough)
+* [Project roadmap](#project-roadmap)
+* [Technologies used](#technologies-used)
 * [References](#references)
 
-## Meet the Team
+## Meet the team
 **Team ChatBoat**
 
 We are a group of 5 graduates from Raffles Institution (RI) with diverse skills and backgrounds but with the common goal of wanting to make a difference in society. 
@@ -52,7 +54,7 @@ SGuard monitors the vitals of its user via his or her phone and/or smartwatch. W
 
 <img src="./readme/Response Flowchart.svg"/>
 
-## How it works
+## Architecture
 <img src="./readme/architecture.png"/>
 
 1. User falls down.
@@ -70,7 +72,12 @@ Watson Text to Speech encodes the message in the user's language.
 9. The SGuard app plays the message and awaits further queries.
 We also intend to include a Node-RED cloud server to facilitate future integration with other SCDF services, such as the MyResponder app. 
 
-## Technologies Used
+## Demo walkthrough
+
+## Project roadmap
+<img src="./readme/Timeline.png" width = 100%/>
+
+## Technologies used
 - [IBM Watson Assistant](https://www.ibm.com/sg-en/cloud/watson-assistant)
 - [IBM Watson Text to Speech](https://www.ibm.com/sg-en/cloud/watson-text-to-speech)
 - [IBM Watson Speech to Text](https://www.ibm.com/sg-en/cloud/watson-speech-to-text)
