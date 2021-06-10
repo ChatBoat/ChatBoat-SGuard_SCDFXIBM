@@ -41,7 +41,7 @@ function NewHistoryCard() {
 				<Picker.Item label="Insomnia" value="Insomnia" />
 			</Picker>
 			<View style={{ flexDirection: 'row', marginLeft: 16, marginBottom: 8 }}>
-				<H4>Seriousness </H4>
+				<H4>Seriousness</H4>
 				<Slider
 					style={{ width: 250, height: 24 }}
 					minimumValue={1}
@@ -57,7 +57,7 @@ function NewHistoryCard() {
 				<Button
 					onPress={() => {
 						setData([
-							...data,
+							...(data ?? []),
 							{
 								conditionName: condition,
 								seriousness: seriousness,
