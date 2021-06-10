@@ -107,7 +107,7 @@ function CallControl() {
 					margin: 0px 8px;
 				`}
 				onPress={startCall}>
-				Start Call
+				Test Call
 			</Button>
 			<Button
 				style={css`

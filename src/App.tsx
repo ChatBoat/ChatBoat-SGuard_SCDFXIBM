@@ -18,7 +18,6 @@ import {
 	DrawerContentScrollView,
 	DrawerItem,
 } from '@react-navigation/drawer'
-import { Button } from './components/Misc'
 import {
 	HeaderButton as RNHeaderButton,
 	HeaderButtons,
