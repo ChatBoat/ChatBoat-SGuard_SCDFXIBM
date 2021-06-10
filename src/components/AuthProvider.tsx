@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, createContext, useContext, useState, useEffect } from 'react'
 import firebaseAuth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import Toast from 'react-native-toast-message'
+import { Alert } from 'react-native'
 
 export type authState = 'AUTH_LOADING' | 'LOGGED_IN' | 'LOGGED_OUT'
 
