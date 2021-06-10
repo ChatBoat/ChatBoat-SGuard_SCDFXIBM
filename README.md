@@ -75,6 +75,7 @@ We also intend to include a Node-RED cloud server to facilitate future integrati
 
 ## Demo walkthrough
 <img src="./readme/screenshots.png" width = 100%/>
+
 1. On your Android phone, go to <https://tiny.cc/sguardapp> and download the `SGuardApp.apk`.
 2. Click package installer.
 3. Give the app permission to install (there will be a few warnings).
