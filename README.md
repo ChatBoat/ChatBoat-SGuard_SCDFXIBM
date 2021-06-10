@@ -3,6 +3,7 @@
 #### Shortcuts
 - Part (d) Detailed report: <https://tiny.cc/chatboat-sguard-2021>
 - Part (b) Pitch video: <https://youtu.be/anuxFbkIII4>
+- Minimum Viable App Download: <https://tiny.cc/sguardapp>
 
 ## Table of contents
 * [Meet the team](#meet-the-team)
@@ -73,6 +74,17 @@ Watson Text to Speech encodes the message in the user's language.
 We also intend to include a Node-RED cloud server to facilitate future integration with other SCDF services, such as the MyResponder app. 
 
 ## Demo walkthrough
+<img src="./readme/screenshots.png" width = 100%/>
+1. On your Android phone, go to <https://tiny.cc/sguardapp> and download the `SGuardApp.apk`.
+2. Click package installer.
+3. Give the app permission to install (there will be a few warnings).
+4. Open the app and approve permissions.
+5. Login to the app.
+6. Explore the app features.
+7. Click the Fall Detection Service to turn on fall detection.
+8. Close the app and switch off the phone.
+9. Shake the phone (to emulate falling).
+10. Interact with the voicebot and have fun!
 
 ## Project roadmap
 <img src="./readme/Timeline.png" width = 100%/>
@@ -86,7 +98,6 @@ We also intend to include a Node-RED cloud server to facilitate future integrati
 - [react-native-twilio-phone](https://github.com/MrHertal/react-native-twilio-phone)
   - [Twilio voIP Client SDK](https://www.twilio.com/docs/voice/voip-sdk/android)
 - [Twilio Functions](https://www.twilio.com/docs/runtime/functions)
-
 
 ## References
 <a id="reference-1">1.</a>
