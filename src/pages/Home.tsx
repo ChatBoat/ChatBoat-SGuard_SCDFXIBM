@@ -1,9 +1,9 @@
 import React from 'react'
 
 import { View } from 'react-native'
-import { ControlPanel } from '../Control'
-import { Card, H3 } from '../Misc'
-import { SensorsSection } from '../Sensors'
+import { ControlPanel } from '../components/Control'
+import { Card, H3 } from '../components/Misc'
+import { SensorsSection } from '../components/Sensors'
 
 function Home() {
 	return (

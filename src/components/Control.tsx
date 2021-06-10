@@ -7,7 +7,7 @@ import {
 	isServiceRunning,
 	startFallDetectionService,
 	stopFallDetectionService,
-} from './FallDetection'
+} from '../FallDetection'
 
 import { View, Switch } from 'react-native'
 import { Button, Card, H3, H4, Row } from './Misc'

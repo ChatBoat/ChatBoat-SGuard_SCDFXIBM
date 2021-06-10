@@ -1,6 +1,6 @@
 import styled, { css } from '@emotion/native'
 import React, { ComponentProps, ReactText } from 'react'
-import { Pressable, Text } from 'react-native'
+import { Pressable } from 'react-native'
 
 export const H1 = styled.Text`
 	font-size: 64px;

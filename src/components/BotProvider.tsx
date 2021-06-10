@@ -1,6 +1,6 @@
 import React, { useEffect, createContext, useContext } from 'react'
 import RNCallKeep from 'react-native-callkeep'
-import { emergencyEventEmitter, FALL_DETECTED } from './FallDetection'
+import { emergencyEventEmitter, FALL_DETECTED } from '../FallDetection'
 import { RNTwilioPhone } from './RNTwilioPhone'
 
 const identity = 'TestUser'
