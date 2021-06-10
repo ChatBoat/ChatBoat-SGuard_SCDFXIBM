@@ -121,6 +121,39 @@ function CallControl() {
 	)
 }
 
+function AlgoControl() {
+	const [isUsingRealAlgo, setUsing] = useState(false)
+	return (
+		<Row
+			style={css`
+				justify-content: space-between;
+				align-items: baseline;
+			`}>
+			<H4
+				style={css`
+					flex-shrink: 0;
+				`}>
+				Use real algorithm (hard to trigger):{' '}
+			</H4>
+			<View
+				style={css`
+					flex-grow: 1;
+				`}
+			/>
+			<Switch
+				style={css`
+					top: 3px;
+				`}
+				trackColor={{ false: '#767577', true: '#81b0ff' }}
+				thumbColor={isUsingRealAlgo ? '#f5dd4b' : '#f4f3f4'}
+				ios_backgroundColor="#3e3e3e"
+				onValueChange={setUsing}
+				value={isUsingRealAlgo}
+			/>
+		</Row>
+	)
+}
+
 export function ControlPanel() {
 	return (
 		<Card
@@ -129,6 +162,7 @@ export function ControlPanel() {
 			`}>
 			<H3>Control Panel</H3>
 			<FallDetectionControl />
+			<AlgoControl />
 			<CallControl />
 		</Card>
 	)

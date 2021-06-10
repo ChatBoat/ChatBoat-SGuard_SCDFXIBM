@@ -15,7 +15,15 @@ function Alarm() {
 				alignItems: 'center',
 				justifyContent: 'center',
 			}}>
-			<Icon.Button size={144} name="bell-slash" backgroundColor="#3b5998" onLongPress={endCall} />
+			<Icon.Button
+				size={128}
+				iconStyle={{ marginRight: 0, padding: 0, textAlign: 'center' }}
+				borderRadius={9999}
+				name="bell-slash"
+				backgroundColor="white"
+				color="red"
+				onLongPress={endCall}
+			/>
 			<H2>HOLD BUTTON TO DISABLE ALARM</H2>
 			<Toast position="bottom" ref={(ref) => Toast.setRef(ref)} />
 		</View>

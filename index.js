@@ -3,7 +3,7 @@ import 'react-native-gesture-handler'
 import { AppRegistry } from 'react-native'
 import App from './src/App'
 import { name as appName } from './app.json'
-import MMKVStorage, { create } from 'react-native-mmkv-storage'
+import MMKVStorage, { useMMKVStorage } from 'react-native-mmkv-storage'
 import { RNTwilioPhone } from './src/RNTwilioPhone'
 
 const MMKV = new MMKVStorage.Loader().initialize()
