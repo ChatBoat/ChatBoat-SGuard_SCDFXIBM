@@ -1,4 +1,4 @@
-import React, { useEffect, createContext, useContext } from 'react'
+import React, { useLayoutEffect, createContext, useContext, ReactNode } from 'react'
 import RNCallKeep from 'react-native-callkeep'
 import { emergencyEventEmitter, FALL_DETECTED } from '../FallDetection'
 import { RNTwilioPhone } from './RNTwilioPhone'
@@ -42,7 +42,11 @@ export const BotContext = createContext({
 })
 export const useVoicebot = () => useContext(BotContext)
 
-export function BotProvider({ children }) {
+export interface BotProviderProps {
+	children: ReactNode
+	emergencyCallback: (b: boolean) => void
+}
+export function BotProvider({ children, emergencyCallback }: BotProviderProps) {
 	const startCall = () => {
 		RNTwilioPhone.startCall(
 			'sips:+19285971659@public.voip.jp-tok.assistant.watson.cloud.ibm.com',
@@ -52,23 +56,26 @@ export function BotProvider({ children }) {
 				secret: 'hello world',
 			}
 		)
+		emergencyCallback(true)
 	}
 	const endCall = () => {
 		RNTwilioPhone.endAllCalls()
 		RNCallKeep.endAllCalls()
+		emergencyCallback(false)
 	}
-	useEffect(() => {
+	useLayoutEffect(() => {
 		//RNTwilioPhone is a wrapper over TwilioPhone that implements the basic features
 		//We are gonna ignore it and use TwilioPhone directly so I can hack stuff
 		RNTwilioPhone.handleBackgroundState()
 		RNTwilioPhone.initialize(callkeepConfig, fetchAccessToken)
 		//dont deregister the handlers when app shuts down
 	}, [])
-	useEffect(() => {
+	useLayoutEffect(() => {
 		emergencyEventEmitter.removeAllListeners(FALL_DETECTED)
 		emergencyEventEmitter.addListener(FALL_DETECTED, () => {
 			startCall()
 		})
+		if (RNTwilioPhone.calls.length > 0) emergencyCallback(true)
 	}, [])
 	return <BotContext.Provider value={{ startCall, endCall }}>{children}</BotContext.Provider>
 }

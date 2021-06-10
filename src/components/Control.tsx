@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import { css } from '@emotion/native'
 import {
 	emergencyEventEmitter,
@@ -14,32 +14,44 @@ import { Button, Card, H3, H4, Row } from './Misc'
 import Toast from 'react-native-toast-message'
 import { useVoicebot } from './BotProvider'
 
+// This shouldve been written as a provider too
 function FallDetectionControl() {
+	const [checked, setChecked] = useState(false)
 	const [isRunning, setRunning] = useState(false)
-	useEffect(() => {
-		isServiceRunning().then(setRunning)
+	useLayoutEffect(() => {
+		isServiceRunning().then((running) => {
+			setRunning(running)
+			setChecked(true)
+		})
 	}, [])
-	useEffect(() => {
+	useLayoutEffect(() => {
+		if (!checked) return
+		let check = setTimeout(() => {}, 0)
 		if (isRunning) {
 			startFallDetectionService(1000)
-			setTimeout(() => {
+			check = setTimeout(() => {
 				isServiceRunning().then((running) => {
 					if (running) return
-					Toast.show({ type: 'error', text1: 'Service failed to start', position: 'bottom' })
+					Toast.show({ type: 'error', text1: 'Service failed to start' })
 					setRunning(false)
 				})
 			}, 1000)
 		} else {
 			stopFallDetectionService()
 		}
-		emergencyEventEmitter.addListener(FALL_DETECTION_STARTED, () => {
-			Toast.show({ type: 'info', text1: 'Service started', position: 'bottom' })
+		const startedHandle = emergencyEventEmitter.addListener(FALL_DETECTION_STARTED, () => {
+			Toast.show({ type: 'info', text1: 'Service started' })
 			setRunning(true)
 		})
-		emergencyEventEmitter.addListener(FALL_DETECTION_STOPPED, () => {
-			Toast.show({ type: 'info', text1: 'Service stopped', position: 'bottom' })
+		const stoppedHandle = emergencyEventEmitter.addListener(FALL_DETECTION_STOPPED, () => {
+			Toast.show({ type: 'info', text1: 'Service stopped' })
 			setRunning(false)
 		})
+		return () => {
+			clearTimeout(check)
+			startedHandle.remove()
+			stoppedHandle.remove()
+		}
 	}, [isRunning])
 
 	return (

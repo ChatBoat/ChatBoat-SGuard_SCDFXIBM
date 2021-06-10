@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useLayoutEffect, useRef, useState } from 'react'
 import { FlatList, View, useWindowDimensions } from 'react-native'
 import {
 	Area,
@@ -47,7 +47,7 @@ export function SensorGraph({ name, color, useSensor }: SensorGraphProps) {
 	const yMax = (Math.max(...data.map((i) => i.y)) * 4) / 3
 	const tickRate = 5
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		chartRef?.current?.setViewportOrigin({ x: xMax, y: 0 })
 	})
 
