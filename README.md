@@ -3,7 +3,7 @@
 #### Shortcuts
 - Part (d) Detailed report: <https://tiny.cc/chatboat-sguard-2021>
 - Part (b) Pitch video: <https://youtu.be/anuxFbkIII4>
-- Minimum Viable App Download: <https://tiny.cc/sguardapp>
+- Minimum Viable App Download:
 
 ## Table of contents
 * [Meet the team](#meet-the-team)
